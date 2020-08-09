@@ -6,6 +6,7 @@
 #include "menu.h"
 
 #ifdef LCD_LED_PWM_CHANNEL
+  #define LCD_0_PERCENT    0
   #define LCD_5_PERCENT    5
   #define LCD_10_PERCENT   10
   #define LCD_20_PERCENT   20
@@ -39,7 +40,7 @@
   extern LCD_AUTO_DIM lcd_dim;
 
   #define ITEM_SECONDS_NUM 8
-  #define ITEM_BRIGHTNESS_NUM 11
+  #define ITEM_BRIGHTNESS_NUM 12
 
   extern const uint32_t LCD_DIM_IDLE_TIME[ITEM_SECONDS_NUM];
   extern const LABEL itemDimTime[ITEM_SECONDS_NUM];
@@ -52,12 +53,9 @@
   void LCD_Dim_Idle_Timer(void);
   void LCD_LED_PWM_Init(void);
 
-   #define Set_LCD_Brightness(percentage) TIM_PWM_SetDutyCycle(LCD_LED_PWM_CHANNEL, percentage)
+  #define Set_LCD_Brightness(percentage) TIM_PWM_SetDutyCycle(LCD_LED_PWM_CHANNEL, percentage)
 #endif // LCD_LED_PWM_CHANNEL
 
-//TFT35 V1.0 V1.1 RM68042 8bit
-//TFT35 V1.2 ili9488 16bit
-//TFT28 TFT24 ili9341 16bit
 #if LCD_DATA_16BIT == 1
   #define LCD_WR_16BITS_DATA(c) do{ LCD_WR_DATA(c); }while(0)
 #else
